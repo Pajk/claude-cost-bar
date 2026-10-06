@@ -2,6 +2,8 @@
 
 A local macOS menu bar app showing what your Claude Code usage would cost at standard Claude API rates. It reads token counters from `~/.claude/projects/**/*.jsonl`; it does not need an API key or send your logs anywhere.
 
+<p align="center"><img src="docs/screenshot.png" alt="Claude Cost Bar panel showing plan limits and today's cost" width="340"></p>
+
 ## Build and run
 
 Requires macOS 14+ and Xcode command line tools.
