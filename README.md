@@ -29,7 +29,7 @@ The 5-hour and weekly percentages come from the same endpoint Claude Code's `/us
 - **Small and auditable.** About 700 lines of Swift with no dependencies — you can read the whole thing before running it.
 - **Detailed API-equivalent cost.** Per-model pricing, separate rates for cache reads and five-minute/one-hour cache writes, fast mode, and request-level de-duplication of streamed log rows.
 - **Runs on macOS 14+** (OpenUsage requires macOS 15+, per its website).
-- **Light on resources.** Logs are parsed incrementally; after the first scan a refresh costs a fraction of a second of CPU per minute.
+- **Incremental log parsing.** After the first scan, each refresh only reads newly appended log lines. Measured with ~640 MB of logs: ~0.1 s of CPU per minute and ~65 MB of memory. (We have not benchmarked OpenUsage.)
 
 ## Disclaimer
 
