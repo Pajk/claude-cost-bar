@@ -21,6 +21,16 @@ This is an **estimate**, not your subscription bill. Rates are embedded as of 20
 
 The 5-hour and weekly percentages come from the same endpoint Claude Code's `/usage` command uses (`api.anthropic.com/api/oauth/usage`). The app reuses the OAuth token Claude Code stores in the macOS Keychain (`Claude Code-credentials`, read via `/usr/bin/security`; fallback `~/.claude/.credentials.json`). It never refreshes the token itself — if it has expired, run `claude` once. Limits are fetched only when you open the panel (at most once a minute) or press refresh. This endpoint is undocumented and may change.
 
+## How it compares to OpenUsage
+
+[OpenUsage](https://www.openusage.ai) is a great, actively maintained menu bar app covering many AI providers. If you use Codex, Cursor, Copilot and others alongside Claude, it is probably the better choice. Claude Cost Bar is deliberately narrower:
+
+- **Minimal access.** It reads only Claude Code's local session logs and the single Keychain item Claude Code already created. It does not read browser cookies, other providers' credentials, or sync anything to iCloud.
+- **Small and auditable.** About 700 lines of Swift with no dependencies — you can read the whole thing before running it.
+- **Detailed API-equivalent cost.** Per-model pricing, separate rates for cache reads and five-minute/one-hour cache writes, fast mode, and request-level de-duplication of streamed log rows.
+- **Runs on macOS 14+** (OpenUsage requires macOS 15+, per its website).
+- **Light on resources.** Logs are parsed incrementally; after the first scan a refresh costs a fraction of a second of CPU per minute.
+
 ## Disclaimer
 
 Unofficial community tool, not affiliated with or endorsed by Anthropic. "Claude" is a trademark of Anthropic, PBC.
